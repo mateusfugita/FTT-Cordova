@@ -39,14 +39,101 @@
             font-size: 40px;   
         }
         main {
-            padding-top: 56px;
-            padding-bottom: 50px;
+            /* padding-top: 56px; */
+            padding-bottom: 170px;
+        }
+        .jumbotron{
+            margin-top: 56px;
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 10px;
+            color: white;
+        }
+        .lead{
+            color: lightgray;
+        }
+        h3 {
+            font-weight: bold;
+        }
+        .card-img-top {
+            height: 70%;
+            max-height: 700px;
+        }
+        #card-info{
+            width: 70%;
+            margin: 0 auto;
         }
     </STYLE>
+
     <SCRIPT>
+        function search(){
+            let gameName = document.getElementById('inputText').value;
+            $.ajax ({
+                type: 'GET',
+                dataType: 'jsonp',
+                crossDomain: true,
+                jsonp: 'json_callback',
+                url: `http://www.giantbomb.com/api/search/?format=jsonp&api_key=0e4cf06617c4a0bf7342fbb19addc21e336be22d&query=${gameName}&resources=game`,
+                success: function(data) {
+                    document.getElementById('card-info').innerHTML = '';
+                    if(data.results.length === 0){
+                        document.getElementById('card-info').innerHTML = "<p class='text-center'>Não encontrei esse jogo. Tente novamente.</p>";
+                    }
+                    else{
+                        renderCard(data.results[0]);
+                    }
+                },
+                error: function(){
+                    document.getElementById('card-info').innerHTML = '';
+                    document.getElementById('card-info').innerHTML = "<p class='text-center'>Erro na requisição. Tente novamente.</p>";
+                    console.log('Erro ao fazer a requisição.')
+                }                
+            });
+        }
 
+        function renderCard(game){
+            document.getElementById('card-info').className = 'card mb-3';
 
+            if(!document.getElementById('class-img')){
+                //create image
+                var image = createElement('IMG', 'card-img-top');
+                image.setAttribute('id', 'class-img');
+                document.getElementById('card-info').appendChild(image);
+            }
+            document.getElementById('class-img').src = game.image.original_url;
 
+            if(document.getElementsByClassName('card-body').length === 0){
+                //create card body
+                document.getElementById('card-info').appendChild(createElement('DIV', 'card-body'));
+                //create title of the game
+                document.getElementsByClassName('card-body')[0].appendChild(createElement('H3', 'card-title'));
+            }
+            document.getElementsByClassName('card-title')[0].innerText = game.name;
+
+            if(document.getElementsByClassName('list-group list-group-flush').length === 0){
+                //create ul
+                document.getElementsByClassName('card-body')[0].appendChild(createElement('UL', 'list-group list-group-flush'));
+            }
+
+            document.getElementsByClassName('list-group list-group-flush').innerHTML = '';
+            createListItems('Plataformas: ', game.platforms.map(e => e.name).join(', '));
+
+            let date = game.original_release_date.split(/\D/g);
+            createListItems('Data de lançamento: ', [date[2], date[1], date[0]].join('/'));
+        }
+
+        function createElement(tagName, className){
+            var element = document.createElement(tagName);
+            element.setAttribute('class', className);
+            return element;
+        }
+
+        function createListItems(item, attribute){
+            var li = createElement('LI', 'list-group-item');
+            li.innerHTML = item.bold() + attribute;
+            document.getElementsByClassName('list-group list-group-flush')[0].appendChild(li);
+        }
     </SCRIPT>
 </HEAD>
 
@@ -68,10 +155,22 @@
         </div>
     </nav>
 
+    <div class="jumbotron jumbotron-fluid bg-dark">
+        <div class="container">
+          <h1 class="display-4" style="font-weight: bold;">Video Games API</h1>
+          <p class="lead">Utilizando a Giant Bomb API, é possível obter informações sobre alguns jogos de video game.</p>
+        </div>
+    </div>
+
     <main class="container" id="aluno">
-        <hr>
-        <h1><span class="badge badge-success">Projeto do aluno!!<br>Features 1</span></h1>
-        <p><a href="https://github.com/public-apis/public-apis" target="_apis">Lista de APIs públicas</a></p>
+        <label>Digite o nome do jogo: </label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="inputText" placeholder="Nome" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="search()">Pesquisar</button>
+            </div>
+        </div>
+        <div id="card-info"></div>
     </main>
 
     <nav class="navbar fixed-bottom navbar-light bg-light width-button-bar">
@@ -89,6 +188,7 @@
 </BODY>
 <!-- carga de scripts do Bootstrap, JQuery, Popper -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
