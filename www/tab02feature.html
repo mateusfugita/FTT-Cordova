@@ -50,6 +50,7 @@
     <SCRIPT>
         function getPokemon(){
             let pokemonName = document.getElementById('inputText').value;
+            pokemonName = String(pokemonName).toLowerCase();
             let xhr = new XMLHttpRequest();
             var requestResult;
             var typeArray = "";

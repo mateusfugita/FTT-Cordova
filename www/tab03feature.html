@@ -38,16 +38,91 @@
         .icon-font {
             font-size: 40px;   
         }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 520px;
+            porder: 10px;
+            padding: 10px;
+            scroll-padding-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
+        }
+        .personagens {
+            width: 500px;
+            display: block;
+            margin: 0 auto;
+        }
         main {
             padding-top: 56px;
             padding-bottom: 50px;
         }
+        img {
+            height: 25%;
+            width: 25%;
+        }
     </STYLE>
-    <SCRIPT>
+<script>
+    var newsSearch = document.getElementById("news-search");
 
+    var newsSearchText;
+    var url;
 
+    function createNews(nData) 
+    {
+            for (i in nData.results) 
+            {
+                var a = document.createElement("ARTICLE");
+                a.setAttribute("class", "card");
+                var imgCharacter = document.createElement("IMG"); 
+                var nameCharacter = document.createElement("H1"); 
+                var statusCharacter = document.createElement("H3"); 
+                var specieCharacter = document.createElement("H3")
+                var originCharacter = document.createElement("H3")
+                imgCharacter.src = nData.results[i].image; 
+                imgCharacter.style.width = '500px'; 
+                nameCharacter.innerText = "NAME: " + nData.results[i].name;
+                statusCharacter.innerText = "STATUS: " + nData.results[i].status;
+                specieCharacter.innerText = "SPECIE: " + nData.results[i].species;
+                originCharacter.innerText = "ORIGIN: " + nData.results[i].origin.name;
+                
+                a.appendChild(imgCharacter)
+                a.appendChild(nameCharacter);
+                a.appendChild(statusCharacter) 
+                a.appendChild(specieCharacter)
+                a.appendChild(originCharacter)
 
-    </SCRIPT>
+                document.getElementById("personagens").appendChild(a);
+
+            } //for
+
+    }
+
+    function reloadPage() 
+    {
+        var nome = document.getElementById("nome").value;
+        var xhr = new XMLHttpRequest();
+        url = 'https://rickandmortyapi.com/api/character' + '/?name=' + nome
+
+        document.getElementById("personagens").innerHTML = "";
+        console.log(url);
+
+        xhr.onload = function() 
+        {
+                console.log('success!', JSON.parse(xhr.responseText));
+                var newsData = JSON.parse(xhr.responseText);
+                console.log(JSON.parse(xhr.responseText))
+                createNews(newsData);
+        };
+
+        xhr.open('GET', url);
+        xhr.send();
+    }
+
+</script>
 </HEAD>
 
 <BODY lang="pt-br">
@@ -72,7 +147,15 @@
         <hr>
         <h1><span class="badge badge-success">Projeto do aluno!!<br>Feature 3</span></h1>
         <p><a href="https://github.com/public-apis/public-apis" target="_apis">Lista de APIs públicas</a></p>
+        <label>Digite o nome do personagem: </label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="nome" placeholder="Nome" aria-describedby="button-addon2">
+            <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="reloadPage()">Pesquisar</button>
+        </div>
+
     </main>
+    <div class="personagens" id="personagens"></div>
 
     <nav class="navbar fixed-bottom navbar-light bg-light width-button-bar">
         <div class="row w-100 bottom-button-bar">
