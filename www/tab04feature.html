@@ -42,12 +42,43 @@
             padding-top: 56px;
             padding-bottom: 50px;
         }
+        
+        #aluno input[type=text]{
+            margin-top:10px;
+            width: 400px;
+        }
+        
+        #aluno a{
+            margin-left: 20px
+        }
+        
     </STYLE>
-    <SCRIPT>
+    <script type="text/javascript">
+        function API() {
+            var name_card = document.getElementById("text").value;
 
+            var name = "";
+            var img = "";
+            var information = "";
 
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(JSON.parse(this.responseText));
+                    name = JSON.parse(this.responseText).name;
+                    information = JSON.parse(this.responseText).oracle_text;
+                    img = JSON.parse(this.responseText).image_uris.png;
 
-    </SCRIPT>
+                    document.getElementById("lab").innerHTML = "Name: " + name;
+                    document.getElementById("img").src = img;
+                    document.getElementById("information").innerHTML = information;
+                }
+            };
+            xhr.open("GET", `https://api.scryfall.com/cards/named?fuzzy=${name_card}`);
+            xhr.send();
+        }
+
+    </script>
 </HEAD>
 
 <BODY lang="pt-br">
@@ -68,10 +99,28 @@
         </div>
     </nav>
 
-    <main class="container" id="aluno">
-        <hr>
-        <h1><span class="badge badge-success">Projeto do aluno!!<BR>Feature 4</span></h1>
-        <p><a href="https://github.com/public-apis/public-apis" target="_apis">Lista de APIs públicas</a></p>
+    <main class="container_fluid" id="aluno">
+        <div class="row">
+            <div class="col-md" style="height: 50px; background-color: #0c002b; text-align: center">
+                <input id="text" type="text" style="font-family: cursive" placeholder="Name of Card">
+                <a href="#" onclick=API()>
+                    Search
+                </a>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="background-color: gray; height: 500px;text-align: center;padding-left: 60px;">
+                <h5><label id="lab" style="padding-top: 20px; font-family: cursive"></label></h5>
+                <br>
+                <br>
+                <img id="img" width="40%" height="60%" style="padding-bottom: 20px">
+            </div>
+            <div class="col-md-6" style="background-color: gray; height: 500px">
+                <br>
+                <h5><label id="information" style="font-family: cursive"></label></h5>
+            </div>
+        </div>
     </main>
 
     <nav class="navbar fixed-bottom navbar-light bg-light width-button-bar">
