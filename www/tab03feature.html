@@ -3,6 +3,7 @@
 
 <HEAD>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- A biblioteca bundle já contem os arquivos JS do Bootstrap, Popper, e jQuery.
     <script src="js/bootstrap.bundle.js"></script>-->
     <title>FTT EC LP2 N1!!</title>
@@ -36,12 +37,15 @@
             width: 100%;
         }
         .icon-font {
-            font-size: 40px;   
+            font-size: auto;   
         }
         .card {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
-            width: 520px;
+            width: "width=device-width, initial-scale=1";
             porder: 10px;
             padding: 10px;
             scroll-padding-top: 10px;
@@ -52,9 +56,12 @@
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.9);
         }
         .personagens {
-            width: 500px;
+            align-items: center;
+            width: "width=device-width, initial-scale=1";
             display: block;
             margin: 0 auto;
+            text-align: center;
+            margin-bottom: 120px;
         }
         main {
             padding-top: 56px;
@@ -78,12 +85,12 @@
                 var a = document.createElement("ARTICLE");
                 a.setAttribute("class", "card");
                 var imgCharacter = document.createElement("IMG"); 
-                var nameCharacter = document.createElement("H1"); 
-                var statusCharacter = document.createElement("H3"); 
-                var specieCharacter = document.createElement("H3")
-                var originCharacter = document.createElement("H3")
+                var nameCharacter = document.createElement("H3"); 
+                var statusCharacter = document.createElement("P"); 
+                var specieCharacter = document.createElement("P")
+                var originCharacter = document.createElement("P")
                 imgCharacter.src = nData.results[i].image; 
-                imgCharacter.style.width = '500px'; 
+                imgCharacter.style.width = "width=device-width, initial-scale=1"; 
                 nameCharacter.innerText = "NAME: " + nData.results[i].name;
                 statusCharacter.innerText = "STATUS: " + nData.results[i].status;
                 specieCharacter.innerText = "SPECIE: " + nData.results[i].species;
@@ -145,8 +152,6 @@
 
     <main class="container" id="aluno">
         <hr>
-        <h1><span class="badge badge-success">Projeto do aluno!!<br>Feature 3</span></h1>
-        <p><a href="https://github.com/public-apis/public-apis" target="_apis">Lista de APIs públicas</a></p>
         <label>Digite o nome do personagem: </label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" id="nome" placeholder="Nome" aria-describedby="button-addon2">
