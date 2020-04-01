@@ -3,7 +3,6 @@
 
 <HEAD>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- A biblioteca bundle já contem os arquivos JS do Bootstrap, Popper, e jQuery.
     <script src="js/bootstrap.bundle.js"></script>-->
     <title>FTT EC LP2 N1!!</title>
@@ -40,12 +39,28 @@
             font-size: 40px;   
         }
         main {
-            padding-top: 56px;
+            /* padding-top: 56px; */
             padding-bottom: 100px;
         }
+        .jumbotron{
+            margin-top: 56px;
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 10px;
+            color: white;
+        }
+        .lead{
+            color: lightgray;
+        }
+        h3 {
+            font-weight: bold;
+        }
         img {
-            height: 25%;
-            width: 25%;
+            height: 70%;
+            max-height: 700px;
+            width: 70%;
+            margin: 0 auto;
         }
     </STYLE>
     <SCRIPT>
@@ -58,24 +73,25 @@
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     requestResult = JSON.parse(xhr.responseText);
-                    console.log(JSON.parse(this.responseText));
                     typeArray = requestResult.types;
-                    console.log(typeArray);
                     let pokemonTypes = "";
                     for (let i = 0; i < typeArray.length; i++) {
                         if (i > 0){
-                            pokemonTypes += " e "
+                            pokemonTypes += " e ";
                         }
-                        pokemonTypes += typeArray[i].type.name
+                        pokemonTypes += typeArray[i].type.name;
                     }
-                    document.getElementById('PKT').innerHTML = 'Esse pokémon possui o(s) tipo(s): ' + pokemonTypes
-                    document.getElementById('PKI').src = requestResult.sprites.front_default
+                    document.getElementById('PKT').innerHTML = 'Esse pokémon possui o(s) tipo(s): ' + pokemonTypes;
+                    document.getElementById('PKI').src = requestResult.sprites.front_default;
+                }
+                else{
+                    document.getElementById('PKT').innerHTML = 'Pokémon não encontrado :(';
+                    document.getElementById('PKI').src = 'img/pokemonTriste.jpg'
                 }
             };
             xhr.open("GET", `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`);
             xhr.send();
         }
-
     </SCRIPT>
 </HEAD>
 
@@ -97,11 +113,17 @@
         </div>
     </nav>
 
+
+    <div class="jumbotron jumbotron-fluid bg-dark">
+        <div class="container">
+          <h1 class="display-4" style="font-weight: bold;">Pokémon API</h1>
+          <p class="lead">Utilizando a PokeAPI, é possível obter informações sobre todos os pokémons da 4° geração.</p>
+        </div>
+    </div>
+
+
     <main class="container" id="aluno">
-        <hr>
-        <h1><span class="badge badge-success">Projeto do aluno!!<br>Feature 2</span></h1>
-        <p><a href="https://github.com/public-apis/public-apis" target="_apis">Lista de APIs públicas</a></p>
-        <label>Digite o nome de um Pokémon: </label>
+       <label>Digite o nome de um Pokémon: </label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" id="inputText" placeholder="Nome" aria-describedby="button-addon2">
             <div class="input-group-append">
