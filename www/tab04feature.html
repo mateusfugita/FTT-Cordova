@@ -38,19 +38,36 @@
         .icon-font {
             font-size: 40px;   
         }
+        .jumbotron{
+            margin-top: 56px;
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 10px;
+            color: white;
+        }
+        .lead{
+            color: lightgray;
+        }
+        h3 {
+            font-weight: bold;
+        }
         main {
-            padding-top: 56px;
+            
             padding-bottom: 50px;
         }
         
         #aluno input[type=text]{
             margin-top:10px;
-            width: 400px;
+            width: 500px;
         }
         
         #aluno a{
             margin-left: 20px
         }
+        
+
+       
         
     </STYLE>
     <script type="text/javascript">
@@ -98,25 +115,27 @@
             </div>
         </div>
     </nav>
+    
+    <div class="jumbotron jumbotron-fluid bg-dark">
+        <div class="container">
+          <h1 class="display-4" style="font-weight: bold;">Scryfall API</h1>
+          <p class="lead">Retorna as informações sobre a carta pesquisada</p>
+        </div>
+    </div>
 
-    <main class="container_fluid" id="aluno">
+    <main class="container" id="aluno">
         <div class="row">
-            <div class="col-md" style="height: 50px; background-color: #0c002b; text-align: center">
-                <input id="text" type="text" style="font-family: cursive" placeholder="Name of Card">
-                <a href="#" onclick=API()>
-                    Search
-                </a>
-
+            <div class="col-md" style="height: 50px; text-align: center">
+                <input id="text" type="text" style="font-family: cursive;text-align: center" placeholder="Name of Card">
+                <button onclick=API()>Search</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6" style="background-color: gray; height: 500px;text-align: center;padding-left: 60px;">
+            <div id="sec01"class="col-md-6" style="height: 800px;text-align:center;padding-left: 60px;">
                 <h5><label id="lab" style="padding-top: 20px; font-family: cursive"></label></h5>
-                <br>
-                <br>
-                <img id="img" width="40%" height="60%" style="padding-bottom: 20px">
+                <img id="img" width="80%" height="50%" style="padding-bottom: 10px">
             </div>
-            <div class="col-md-6" style="background-color: gray; height: 500px">
+            <div id="sec02" class="col-md-6" style="height: 800px">
                 <br>
                 <h5><label id="information" style="font-family: cursive"></label></h5>
             </div>
