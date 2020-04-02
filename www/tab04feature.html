@@ -53,25 +53,59 @@
             font-weight: bold;
         }
         main {
-            
             padding-bottom: 50px;
+            font-family: cursive;
+            text-align: center;
         }
+ 
+        #Row01 input[type=text]{
+            width: 800px;
+            text-align: center;
+        } 
+
+        #Row02{
+            margin-top: 10px;
+            height: 500px;
+        } 
+        #Row02 img{
+            width: 250px;
+            height: 350px;
+        } 
         
-        #aluno input[type=text]{
-            margin-top:10px;
-            width: 500px;
-        }
-        
-        #aluno a{
-            margin-left: 20px
+        #Row02 #information{
+            font-size: 20px;
+            width: 400px;
+            height: 400px;
         }
         
         @media screen and (max-width: 580px){
-            #aluno input[type=text]{
-            width: 300px;
+            main{
+                height: 1000px;
+            }
+            
+            #Row01 input[type=text]{
+                width: 300px;
+                text-align: center;
+            } 
+            
+            #Row01 button{
+                width: 65px;
+                font-size: 15px;
+            } 
+            
+            #Row02 #Row02-Information{
+                margin-top: 20px;
+            } 
+            #Row02 #Row02-Information label{
+                font-size: 20px;
+            } 
+            
+            #Row02-Information #information{
+                border: 1px solid gray;
+                padding: 10px;
+            }
         }
-        }
-        
+
     </STYLE>
     <script type="text/javascript">
         function API() {
@@ -89,7 +123,7 @@
                     information = JSON.parse(this.responseText).oracle_text;
                     img = JSON.parse(this.responseText).image_uris.png;
 
-                    document.getElementById("lab").innerHTML = "Name: " + name;
+                    document.getElementById("lab").innerHTML = name;
                     document.getElementById("img").src = img;
                     document.getElementById("information").innerHTML = information;
                 }
@@ -127,20 +161,22 @@
     </div>
 
     <main class="container" id="aluno">
-        <div class="row">
-            <div class="col-md" style="height: 50px; text-align: center">
-                <input id="text" type="text" style="font-family: cursive;text-align: center" placeholder="Name of Card">
+        <div id="Row01" class="row">
+            <div class="col-md">
+                <input type="text" id="text" placeholder="Name of Card">
                 <button onclick=API()>Search</button>
             </div>
         </div>
-        <div class="row">
-            <div id="sec01" class="col-md-6" style="height: 500px;text-align:center;padding-left: 60px;">
-                <h5><label id="lab" style="padding-top: 20px; font-family: cursive"></label></h5>
-                <img id="img" width="80%" height="70%" style="padding-bottom: 10px">
-            </div>
-            <div id="sec02" class="col-md-6" style="height: 500px">
+        <div id="Row02" class="row">
+            <div id="Row02-Name" class="col-md-6">
+                <label id="lab">Name of Card</label>
                 <br>
-                <h5><label id="information" style="font-family: cursive; text-align: center"></label></h5>
+                <img id="img">
+            </div>
+            <div id="Row02-Information" class="col-md-6">
+                <label>Information</label>
+                <br>
+                <label id="information"></label>
             </div>
         </div>
     </main>
