@@ -84,12 +84,16 @@
                     document.getElementById('PKT').innerHTML = 'Esse pokémon possui o(s) tipo(s): ' + pokemonTypes;
                     document.getElementById('PKI').src = requestResult.sprites.front_default;
                 }
-                else{
+                else if(this.status == 404) {
                     document.getElementById('PKT').innerHTML = 'Pokémon não encontrado :(';
                     document.getElementById('PKI').src = 'img/pokemonTriste.jpg'
                 }
             };
             xhr.open("GET", `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`);
+            xhr.onerror = function(){
+                document.getElementById('PKT').innerHTML = 'Pokémon não encontrado :(';
+                document.getElementById('PKI').src = 'img/pokemonTriste.jpg'
+            }
             xhr.send();
         }
     </SCRIPT>
@@ -136,13 +140,13 @@
 
     <nav class="navbar fixed-bottom navbar-light bg-light width-button-bar">
         <div class="row w-100 bottom-button-bar">
-            <div class="col-sm center-txt"><b onclick='window.location="tab01feature.html"'>Feature 1<br><span class="icon-font">&#x1f4f0;</span></b>
+            <div class="col-sm center-txt"><b onclick='window.location="tab01feature.html"'>Feature 1<br><span class="icon-font">&#x1f3ae;</span></b>
             </div>
-            <div class="col-sm center-txt button-selected"><b onclick='window.location="tab02feature.html"'>Feature 2<br><span class="icon-font">&#x1f4cc;</span></b>
+            <div class="col-sm center-txt button-selected"><b onclick='window.location="tab02feature.html"'>Feature 2<br><img src="img/pikachu_face.png" style="height: 60%; width: 20%; margin-top:5px;"></b>
             </div>
-            <div class="col-sm center-txt"><b onclick='window.location="tab03feature.html"'>Feature 3<br><span class="icon-font">&#x1F4DD;</span></b>
+            <div class="col-sm center-txt"><b onclick='window.location="tab03feature.html"'>Feature 3<br><img src="img/rick-face.png" style="height: 60%; width: 20%; margin-top:5px;"></b>
             </div>
-            <div class="col-sm center-txt"><b onclick='window.location="tab04feature.html"'>Feature 4<br><span class="icon-font">&#x1F981;</span></b>
+            <div class="col-sm center-txt"><b onclick='window.location="tab04feature.html"'>Feature 4<br><img src="img/scryfall-logo.png" style="height: 60%; width: 20%; margin-top:5px;"></b>
             </div>
         </div>
     </nav>

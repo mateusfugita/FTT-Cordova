@@ -3,7 +3,6 @@
 
 <HEAD>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- A biblioteca bundle já contem os arquivos JS do Bootstrap, Popper, e jQuery.
     <script src="js/bootstrap.bundle.js"></script>-->
     <title>FTT EC LP2 N1!!</title>
@@ -37,7 +36,7 @@
             width: 100%;
         }
         .icon-font {
-            font-size: auto;   
+            font-size: 40px;   
         }
         .card {
             display: block;
@@ -45,8 +44,8 @@
             margin-right: auto;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
-            width: "width=device-width, initial-scale=1";
-            porder: 10px;
+            width: 100%;
+            border: 10px;
             padding: 10px;
             scroll-padding-top: 10px;
             margin-bottom: 20px;
@@ -57,19 +56,30 @@
         }
         .personagens {
             align-items: center;
-            width: "width=device-width, initial-scale=1";
+            width: 100%;
             display: block;
             margin: 0 auto;
             text-align: center;
             margin-bottom: 120px;
         }
         main {
-            padding-top: 56px;
+            /* padding-top: 56px; */
             padding-bottom: 50px;
         }
         img {
             height: 25%;
             width: 25%;
+        }
+        .jumbotron{
+            margin-top: 56px;
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 10px;
+            color: white;
+        }
+        .lead{
+            color: lightgray;
         }
     </STYLE>
 <script>
@@ -150,6 +160,13 @@
         </div>
     </nav>
 
+    <div class="jumbotron jumbotron-fluid bg-dark">
+        <div class="container">
+          <h1 class="display-4" style="font-weight: bold;">Rick and Morty API</h1>
+          <p class="lead">Utilizando a Rick and Morty API, é possível obter informações sobre os personagens da série Rick and Morty.</p>
+        </div>
+    </div>
+
     <main class="container" id="aluno">
         <hr>
         <label>Digite o nome do personagem: </label>
@@ -164,13 +181,13 @@
 
     <nav class="navbar fixed-bottom navbar-light bg-light width-button-bar">
         <div class="row w-100 bottom-button-bar">
-            <div class="col-sm center-txt"><b onclick='window.location="tab01feature.html"'>Feature 1<br><span class="icon-font">&#x1f4f0;</span></b>
+            <div class="col-sm center-txt"><b onclick='window.location="tab01feature.html"'>Feature 1<br><span class="icon-font">&#x1f3ae;</span></b>
             </div>
-            <div class="col-sm center-txt"><b onclick='window.location="tab02feature.html"'>Feature 2<br><span class="icon-font">&#x1f4cc;</span></b>
+            <div class="col-sm center-txt"><b onclick='window.location="tab02feature.html"'>Feature 2<br><img src="img/pikachu_face.png" style="height: 60%; width: 20%; margin-top:5px;"></b>
             </div>
-            <div class="col-sm center-txt button-selected"><b onclick='window.location="tab03feature.html"'>Feature 3<br><span class="icon-font">&#x1F4DD;</span></b>
+            <div class="col-sm center-txt button-selected"><b onclick='window.location="tab03feature.html"'>Feature 3<br><img src="img/rick-face.png" style="height: 60%; width: 20%; margin-top:5px;"></b>
             </div>
-            <div class="col-sm center-txt"><b onclick='window.location="tab04feature.html"'>Feature 4<br><span class="icon-font">&#x1F981;</span></b>
+            <div class="col-sm center-txt"><b onclick='window.location="tab04feature.html"'>Feature 4<br><img src="img/scryfall-logo.png" style="height: 60%; width: 20%; margin-top:5px;"></b>
             </div>
         </div>
     </nav>
